@@ -1,15 +1,13 @@
-#!/bin/bash
-#PBS -P MST109178
-#PBS -W group_list=MST109178
-#PBS -N Test_Jeff
-#PBS -l select=1:ncpus=40
-#PBS -l place=pack
-#PBS -q ngs192G
-#PBS -o /work1/u1272905/hap.py_wkdir/test_file/Test_Jeff.out
-#PBS -e /work1/u1272905/hap.py_wkdir/test_file/Test_Jeff.err
-#PBS -M jocosojeff@gmail.com
-#PBS -m ae
-
+#!/usr/bin/sh
+#SBATCH -A MST109178        # Account name/project number
+#SBATCH -J SAMPLE_NAME         # Job name
+#SBATCH -p ngs48G           # Partition Name 
+#SBATCH -c 14               # Core numbers
+#SBATCH --mem=46g           # Memory size
+#SBATCH -o out.log          # Path to the standard output file 
+#SBATCH -e err.log          # Path to the standard error ouput file
+#SBATCH --mail-user=@gmail.com    # email
+#SBATCH --mail-type=FAIL              # When to send an email = NONE, BEGIN, END, FAIL, REQUEUE, or ALL
 
 wkdir=/work1/u1272905/hap.py_wkdir/test_file
 INPUT=/work1/u1272905/hap.py_wkdir/HG001_hg19_hap.py/OUTPUT.b37.recaled.vcf.gz
@@ -30,7 +28,7 @@ cd ${wkdir}
 # This script will take a while to run, ca. 20-30 min on a 4-core laptop.
 # Running with more CPUs will be faster.
 
-para="Test_Jeff" #Output prefix name
+para=" " #Output prefix name
 
 # Tool directory
 DIR="/pkg/biology/hap.py/build/hap.py/example/happy"
